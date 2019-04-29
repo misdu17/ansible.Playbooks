@@ -1,0 +1,6 @@
+- hosts: appserver
+  tasks:
+  - name: Install Telnet on App Servers
+    apt: pkg=telnet state=installed update_cache=true
+
+
