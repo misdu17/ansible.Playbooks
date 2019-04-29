@@ -14,10 +14,8 @@
       prompt: Install Which Package?
   tasks:
     - name: Install Apache Web Server
-      action: apt name=apache2 state=installed update_cache=true
+      action: apt name=apache2 state=installed
       notify: Restart HTTPD
-    - name: Install the Lynx Web Browser
-      action: apt name={{ pkg_name }} state=installed
   handlers:
     - name: Restart HTTPD
       action: service name=apache2 state=restarted
