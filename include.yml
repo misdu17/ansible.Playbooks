@@ -1,0 +1,11 @@
+--- # FULL INCLUDE TASKS EXAMPLE
+- hosts: apacheweb
+  user: test
+  sudo: yes
+  connection: ssh
+  gather_facts: no
+  tasks:
+  - include: plays/packages.yml
+  - name: Verify the telnet package is installed
+    raw: apt list --installed | grep telnet > /home/test/pkgs.log
+
