@@ -1,0 +1,16 @@
+--- # START AT PLAYBOOK EXAMPLE
+- hosts: apacheweb
+  user: test
+  sudo: yes
+  connection: ssh
+  gather_facts: no
+  tasks:
+  - name: Install Telnet
+    apt: pkg=telnet state=latest
+  - name: Install Lynx
+    apt: pkg=lynx state=latest
+  - name: List Home
+    command: ls -al /home/test
+    register: result
+  - debug: var=result
+  
