@@ -1,0 +1,12 @@
+--- # The Pause Module
+- hosts: apacheweb
+  sudo: yes
+  gather_facts: no
+  tasks:
+  - name: Insatll Apache2
+    action: apt name=apache2 state=installed
+  - name: Pausing
+    pause:
+      seconds: 3
+  - name: Verify lynx installation
+    action: apt name=lynx state=present

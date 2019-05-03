@@ -10,4 +10,5 @@
     connectionType: SFTP
   tasks:
   - name: Install the configuration file customized for the system
-    
+    template: src=test.conf.j2 dest=/home/test/test.conf owner=test group=test mode=750
+   

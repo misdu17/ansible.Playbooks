@@ -1,0 +1,11 @@
+--- # COMMAND MODULE EXAMPLE
+- hosts: apacheweb
+  user: test
+  sudo: yes
+  connection: ssh
+  gather_facts: no
+  tasks:
+  - name: Check for Python packages
+    command: /home/test/testing/test.sh
+    args:
+      chdir: /home/test/testing
