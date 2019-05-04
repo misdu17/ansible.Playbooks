@@ -1,0 +1,11 @@
+--- # USER MODULE EXAMPLE
+- hosts: apacheweb
+  user: test
+  sudo: yes
+  gather_facts: no
+  connection: ssh
+  tasks:
+  - name: Add the user called tstapache to the apache web client
+    user: name=tstapache comment="Test Apache" shell=/bin/bash
+  - name: Delete the user
+    user: name=tstapache state=absent remove=yes

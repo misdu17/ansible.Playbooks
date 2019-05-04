@@ -1,0 +1,11 @@
+--- # APACHE2_MODULE EXAMPLE
+- hosts: apacheweb
+  user: test
+  sudo: yes
+  connection: ssh
+  gather_facts: no
+  tasks:
+  - name: Disable the alias module in Apache2
+    apache2_module: state=absent name=alias force=yes
+  - name: Enable the alias module in Apache2
+    apache2_module: state=present name=alias
