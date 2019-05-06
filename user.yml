@@ -1,4 +1,4 @@
---- # USER MODULE EXAMPLE
+--- # USER MODULE EXAMPLE ONLY
 - hosts: apacheweb
   user: test
   sudo: yes
