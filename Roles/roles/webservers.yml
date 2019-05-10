@@ -1,0 +1,7 @@
+--- # Master Playbook for Web Servers
+- hosts: apacheweb
+  user: test
+  sudo: yes
+  connection: ssh
+  roles:
+  - webservers
