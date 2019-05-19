@@ -1,0 +1,30 @@
+--- # Build an Apache Web Server
+- hosts: apacheweb
+  user: test
+  sudo: yes
+  connection: ssh
+  gather_facts: yes
+  vars:
+    apache_pkg: apache2
+    distribution: debian
+    apache_version: 2.4  
+    apache_dir: /var/www/sample
+    apache_fqdn: raspberrypi-2
+  tasks:
+  - name: Install the Web Server Package
+    apt: pkg=apache2 state=latest
+  - name: Create the web server directory
+    file: path=/var/www/sample state=directory mode=644
+  - name: Copy the Apache configuration file to remote host
+    copy: src=files/apache.conf.template dest=/etc/apache2/sites-available/sample.conf owner=root group=root mode=644
+  - name: Copy and untar the source for the site
+    unarchive: src=files/sitecode.tar.gz dest=/var/www/sample
+  - name: activate demo apache site
+    file: src=/etc/apache2/sites-available/sample.conf dest=/etc/apache2/sites-enabled/sample.conf state=link
+  - name: Start the Web Server
+    service: name=apache2 state=started
+  - name: Test the web server
+    shell: curl http://192.168.1.132:80
+    register: result
+  - name: Display Result
+    debug: var=result
